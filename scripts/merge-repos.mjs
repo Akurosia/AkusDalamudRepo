@@ -8,10 +8,15 @@ const configPath = resolve(args.config ?? "input_repos.json");
 const config = JSON.parse(await readFile(configPath, "utf8"));
 const outputPath = resolve(args.output ?? config.output ?? "repo.json");
 const duplicatePolicy = args["duplicate-policy"] ?? config.duplicatePolicy ?? "keep-first";
+const invalidDownloadPolicy = args["invalid-download-policy"] ?? config.invalidDownloadPolicy ?? "error";
 const preserveOrder = args["preserve-order"] != null ? toBoolean(args["preserve-order"]) : config.preserveOrder !== false;
 
 if (!["keep-first", "keep-last", "error"].includes(duplicatePolicy)) {
   throw new Error(`Invalid duplicatePolicy "${duplicatePolicy}". Use keep-first, keep-last, or error.`);
+}
+
+if (!["error", "skip", "keep"].includes(invalidDownloadPolicy)) {
+  throw new Error(`Invalid invalidDownloadPolicy "${invalidDownloadPolicy}". Use error, skip, or keep.`);
 }
 
 if (!Array.isArray(config.repositories) || config.repositories.length === 0) {
@@ -21,6 +26,7 @@ if (!Array.isArray(config.repositories) || config.repositories.length === 0) {
 const merged = [];
 const seen = new Map();
 const duplicates = [];
+const invalidDownloads = [];
 
 for (const [index, source] of config.repositories.entries()) {
   const url = sourceToUrl(source);
@@ -28,10 +34,23 @@ for (const [index, source] of config.repositories.entries()) {
   console.log(`Fetching ${label}`);
 
   const repoJson = await fetchJson(url);
-  const entries = await normalizeEntries(repoJson, label, source);
+  const entries = (await normalizeEntries(repoJson, label, source)).map((entry) => applySourceOverrides(entry, source));
 
   for (const entry of entries) {
     const key = pluginKey(entry);
+    const failedDownloads = await validateDownloadLinks(entry);
+
+    if (failedDownloads.length > 0) {
+      invalidDownloads.push({ key: key || "(unknown plugin)", source: label, downloads: failedDownloads });
+
+      if (invalidDownloadPolicy === "error") {
+        continue;
+      }
+
+      if (invalidDownloadPolicy === "skip") {
+        continue;
+      }
+    }
 
     if (key && seen.has(key)) {
       duplicates.push({ key, source: label });
@@ -63,6 +82,13 @@ if (duplicatePolicy === "error" && duplicates.length > 0) {
   throw new Error(`Duplicate plugins found:\n${list}`);
 }
 
+if (invalidDownloadPolicy === "error" && invalidDownloads.length > 0) {
+  const list = invalidDownloads
+    .flatMap((item) => item.downloads.map((download) => `- ${item.key} from ${item.source}: ${download.field} ${download.status} ${download.url}`))
+    .join("\n");
+  throw new Error(`Invalid plugin download links found:\n${list}`);
+}
+
 const output = preserveOrder
   ? merged
   : [...merged].sort((a, b) => pluginKey(a).localeCompare(pluginKey(b)));
@@ -73,6 +99,9 @@ await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, "utf8");
 console.log(`Wrote ${merged.length} plugin entries to ${outputPath}`);
 if (duplicates.length > 0) {
   console.log(`Skipped or replaced ${duplicates.length} duplicate entries using "${duplicatePolicy}".`);
+}
+if (invalidDownloads.length > 0) {
+  console.log(`Found ${invalidDownloads.length} plugin entries with invalid download links using "${invalidDownloadPolicy}".`);
 }
 
 function parseArgs(rawArgs) {
@@ -203,6 +232,14 @@ function isPluginEntry(entry) {
   return Boolean(entry && typeof entry === "object" && pluginKey(entry));
 }
 
+function applySourceOverrides(entry, source) {
+  if (!source || typeof source !== "object" || !source.overrides || typeof source.overrides !== "object") {
+    return entry;
+  }
+
+  return { ...entry, ...source.overrides };
+}
+
 async function normalizePluginEntry(entry, source) {
   const normalized = { ...entry };
 
@@ -228,10 +265,6 @@ async function normalizePluginEntry(entry, source) {
     }
   }
 
-  if (source && typeof source === "object" && source.overrides && typeof source.overrides === "object") {
-    Object.assign(normalized, source.overrides);
-  }
-
   return normalized;
 }
 
@@ -244,6 +277,45 @@ async function latestReleaseAssetUrl(owner, repo, assetName) {
   }
 
   return asset.browser_download_url;
+}
+
+async function validateDownloadLinks(entry) {
+  const fields = ["DownloadLinkInstall", "DownloadLinkUpdate", "DownloadLinkTesting"];
+  const failures = [];
+
+  for (const field of fields) {
+    const url = entry?.[field];
+
+    if (!url) {
+      continue;
+    }
+
+    const status = await fetchStatus(url);
+    if (status < 200 || status >= 400) {
+      failures.push({ field, status, url });
+    }
+  }
+
+  return failures;
+}
+
+async function fetchStatus(url) {
+  let response = await fetch(url, {
+    method: "HEAD",
+    headers: {
+      "User-Agent": "dalamud-repo-merger"
+    }
+  });
+
+  if (response.status === 405) {
+    response = await fetch(url, {
+      headers: {
+        "User-Agent": "dalamud-repo-merger"
+      }
+    });
+  }
+
+  return response.status;
 }
 
 function pluginKey(entry) {

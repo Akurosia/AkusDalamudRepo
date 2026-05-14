@@ -59,6 +59,15 @@ Change `duplicatePolicy` in `repos.json` if you want different behavior:
 
 Plugins are matched by `InternalName`, then `Name`, then `AssemblyName`.
 
+## Download Validation
+
+The merger validates `DownloadLinkInstall`, `DownloadLinkUpdate`, and `DownloadLinkTesting` before writing the
+merged repo. Set `invalidDownloadPolicy` in `repos.json` to choose how dead links are handled:
+
+- `error`: fail the merge when a plugin has a broken download link
+- `skip`: omit plugins with broken download links
+- `keep`: keep entries even when a download link is currently broken
+
 ## Manual Local Run
 
 ```powershell
