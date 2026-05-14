@@ -28,7 +28,7 @@ for (const [index, source] of config.repositories.entries()) {
   console.log(`Fetching ${label}`);
 
   const repoJson = await fetchJson(url);
-  const entries = normalizeEntries(repoJson, label);
+  const entries = await normalizeEntries(repoJson, label, source);
 
   for (const entry of entries) {
     const key = pluginKey(entry);
@@ -179,7 +179,7 @@ async function fetchJson(url) {
   return response.json();
 }
 
-function normalizeEntries(repoJson, label) {
+async function normalizeEntries(repoJson, label, source) {
   if (Array.isArray(repoJson)) {
     return repoJson;
   }
@@ -192,10 +192,60 @@ function normalizeEntries(repoJson, label) {
     return repoJson.PluginMaster;
   }
 
+  if (isPluginEntry(repoJson)) {
+    return [await normalizePluginEntry(repoJson, source)];
+  }
+
   throw new Error(`${label} did not return a Dalamud repo array.`);
+}
+
+function isPluginEntry(entry) {
+  return Boolean(entry && typeof entry === "object" && pluginKey(entry));
+}
+
+async function normalizePluginEntry(entry, source) {
+  const normalized = { ...entry };
+
+  if (source && typeof source === "object" && source.owner && source.repo) {
+    const owner = source.owner;
+    const repo = source.repo;
+    const repoUrl = `https://github.com/${owner}/${repo}`;
+    const releaseAsset = source.releaseAsset ?? "latest.zip";
+    const releaseTag = source.releaseTag ?? "latest";
+
+    if (!normalized.RepoUrl || source.preferSourceRepoUrl === true) {
+      normalized.RepoUrl = repoUrl;
+    }
+
+    if (!normalized.DownloadLinkInstall || !normalized.DownloadLinkUpdate || !normalized.DownloadLinkTesting) {
+      const downloadUrl = releaseTag === "latest"
+        ? await latestReleaseAssetUrl(owner, repo, releaseAsset)
+        : `${repoUrl}/releases/download/${releaseTag}/${releaseAsset}`;
+
+      normalized.DownloadLinkInstall ??= downloadUrl;
+      normalized.DownloadLinkUpdate ??= downloadUrl;
+      normalized.DownloadLinkTesting ??= downloadUrl;
+    }
+  }
+
+  if (source && typeof source === "object" && source.overrides && typeof source.overrides === "object") {
+    Object.assign(normalized, source.overrides);
+  }
+
+  return normalized;
+}
+
+async function latestReleaseAssetUrl(owner, repo, assetName) {
+  const release = await fetchJson(`https://api.github.com/repos/${owner}/${repo}/releases/latest`);
+  const asset = release.assets?.find((item) => item.name === assetName);
+
+  if (!asset?.browser_download_url) {
+    throw new Error(`Latest release for ${owner}/${repo} does not include ${assetName}.`);
+  }
+
+  return asset.browser_download_url;
 }
 
 function pluginKey(entry) {
   return String(entry?.InternalName ?? entry?.Name ?? entry?.AssemblyName ?? "").trim();
 }
-

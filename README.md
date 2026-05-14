@@ -42,6 +42,11 @@ Or GitHub repo objects:
 
 Simple `owner/repo` strings also work. They default to `main` and `repo.json`.
 
+Repo objects may also point at a single Dalamud plugin manifest such as `PluginName/PluginName.json`.
+When that manifest does not include download links, the merger fills install, update, and testing links from
+the repository's latest GitHub release asset named `latest.zip` by default. Use `releaseTag` or
+`releaseAsset` on the source object to override those defaults.
+
 ## Duplicate Handling
 
 The first source wins by default. Put higher-priority repositories earlier in `repos.json`.
@@ -59,4 +64,3 @@ Plugins are matched by `InternalName`, then `Name`, then `AssemblyName`.
 ```powershell
 node scripts/merge-repos.mjs --config repos.json --output repo.json
 ```
-
