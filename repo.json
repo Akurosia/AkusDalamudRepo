@@ -92,5 +92,28 @@
     "DownloadLinkInstall": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.6/latest.zip",
     "DownloadLinkTesting": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.6/latest.zip",
     "DownloadLinkUpdate": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.6/latest.zip"
+  },
+  {
+    "Author": "goat, Maple, Akurosia",
+    "Name": "Fancy Loading Screens",
+    "InternalName": "Dalamud.LoadingImage",
+    "AssemblyVersion": "1.0.0.18",
+    "TestingAssemblyVersion": "1.0.0.18",
+    "Description": "This plugin shows the destination zone's concept art while loading.\nNOTE: ONLY LOOKS RIGHT ON 16:9 SCREENS! The concept art is not any bigger, and we can't expand/fix it. Sorry!",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "TestingDalamudApiLevel": 15,
+    "Punchline": "Shows the destination zone's concept art while loading",
+    "RepoUrl": "https://github.com/Akurosia/Dalamud.LoadingImage",
+    "IconUrl": "https://github.com/Akurosia/Dalamud.LoadingImage/raw/master/Dalamud.LoadingImage/icon.png",
+    "DownloadLinkInstall": "https://github.com/Akurosia/Dalamud.LoadingImage/releases/download/v1.0.0.18/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/Dalamud.LoadingImage/releases/download/v1.0.0.18/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/Dalamud.LoadingImage/releases/download/v1.0.0.18/latest.zip",
+    "Tags": [
+      "loading",
+      "ui",
+      "zones",
+      "cosmetic"
+    ]
   }
 ]
