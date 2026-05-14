@@ -1,0 +1,32 @@
+{
+  "output": "repo.json",
+  "duplicatePolicy": "keep-first",
+  "preserveOrder": true,
+  "repositories": [
+    {
+      "owner": "Akurosia",
+      "repo": "HPDiff",
+      "branch": "main",
+      "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "AkusEnemySkillTracking",
+      "branch": "main",
+      "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "AkuItemSets",
+      "branch": "main",
+      "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "DalamudRepoBrowser",
+      "branch": "main",
+      "path": "repo.json"
+    }
+  ]
+}
+
