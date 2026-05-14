@@ -6,7 +6,7 @@ on:
       config_path:
         description: Path to the source repo list
         required: true
-        default: repos.json
+        default: input_repos.json
       output_path:
         description: Path for the merged Dalamud repo file
         required: true
