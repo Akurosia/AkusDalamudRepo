@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const args = parseArgs(process.argv.slice(2));
-const configPath = resolve(args.config ?? "repos.json");
+const configPath = resolve(args.config ?? "input_repos.json");
 const config = JSON.parse(await readFile(configPath, "utf8"));
 const outputPath = resolve(args.output ?? config.output ?? "repo.json");
 const duplicatePolicy = args["duplicate-policy"] ?? config.duplicatePolicy ?? "keep-first";
