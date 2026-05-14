@@ -44,30 +44,30 @@
     "DownloadLinkUpdate": "https://github.com/Akurosia/AkuItemSets/releases/download/v0.0.5/latest.zip"
   },
   {
-    "Author": "UnknownX, iRobsie, BeSlightly",
+    "Author": "UnknownX, iRobsie, BeSlightly, Akurosia",
     "Name": "DalamudRepoBrowser",
     "Punchline": "Browse and add third party repositories in an instant",
     "Description": "An interface for browsing and managing third party repositories.",
     "Changelog": "",
     "InternalName": "DalamudRepoBrowser",
     "AssemblyVersion": "3.0.0.4",
-    "RepoUrl": "https://github.com/BeSlightly/DalamudRepoBrowser",
+    "RepoUrl": "https://github.com/Akurosia/DalamudRepoBrowser",
     "ApplicableVersion": "any",
     "CategoryTags": [
       "other"
     ],
     "DalamudApiLevel": 15,
-    "IconUrl": "https://raw.githubusercontent.com/BeSlightly/DalamudRepoBrowser/master/images/logo.png",
+    "IconUrl": "https://raw.githubusercontent.com/Akurosia/DalamudRepoBrowser/master/images/logo.png",
     "ImageUrls": [
       ""
     ],
     "DownloadLinkInstall": "https://github.com/Akurosia/DalamudRepoBrowser/releases/download/v3.0.0.4/latest.zip",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkTesting": "https://github.com/BeSlightly/DalamudRepoBrowser/releases/download/v3.0.0.3/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/DalamudRepoBrowser/releases/download/v3.0.0.3/latest.zip",
     "DownloadLinkUpdate": "https://github.com/Akurosia/DalamudRepoBrowser/releases/download/v3.0.0.4/latest.zip",
     "DownloadCount": 0,
-    "LastUpdate": 1778749358
+    "LastUpdate": 1778749880
   },
   {
     "Author": "Akurosia",
@@ -87,8 +87,8 @@
     ],
     "DalamudApiLevel": 15,
     "AcceptsFeedback": true,
-    "DownloadLinkInstall": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.4/latest.zip",
-    "DownloadLinkUpdate": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.4/latest.zip",
-    "DownloadLinkTesting": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.4/latest.zip"
+    "DownloadLinkInstall": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.5/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.5/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/HPDiff/releases/download/v0.9.1.5/latest.zip"
   }
 ]
