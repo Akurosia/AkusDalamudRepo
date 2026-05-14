@@ -26,6 +26,12 @@
       "repo": "HPDiff",
       "branch": "main",
       "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "Dalamud.LoadingImage",
+      "branch": "main",
+      "path": "repo.json"
     }
   ]
 }
