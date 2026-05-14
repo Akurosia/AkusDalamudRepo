@@ -1,0 +1,94 @@
+[
+  {
+    "Author": "Akurosia",
+    "Name": "AkusEnemySkillTracking",
+    "InternalName": "AkusEnemySkillTracking",
+    "AssemblyVersion": "0.0.7",
+    "TestingAssemblyVersion": "0.0.7",
+    "Description": "Tracks actions used by battle NPCs/enemies in the current territory and exports observations as JSON and JSONL. Slash command: /akust",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "Punchline": "Records enemy actions by zone for logdata collection.",
+    "RepoUrl": "https://github.com/Akurosia/AkusEnemySkillTracking",
+    "IconUrl": "https://github.com/Akurosia/AkusEnemySkillTracking/raw/main/AkusEnemySkillTracking/icon.png",
+    "DownloadLinkInstall": "https://github.com/Akurosia/AkusEnemySkillTracking/releases/download/v0.0.7/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/AkusEnemySkillTracking/releases/download/v0.0.7/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/AkusEnemySkillTracking/releases/download/v0.0.7/latest.zip",
+    "Tags": [
+      "logdata",
+      "enemy",
+      "skill",
+      "collection"
+    ]
+  },
+  {
+    "Author": "Akurosia",
+    "Name": "AkuItemSets",
+    "InternalName": "AkuItemSets",
+    "Description": "Scans inventory, armoury chest, saddlebag, retainers, glamour dresser, and armoire to show item set collection progress with job filters.",
+    "AssemblyVersion": "0.0.5",
+    "TestingAssemblyVersion": "0.0.5",
+    "RepoUrl": "https://github.com/Akurosia/AkuItemSets",
+    "IconUrl": "https://github.com/Akurosia/AkuItemSets/raw/main/icon.png",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "TestingDalamudApiLevel": 15,
+    "Tags": [
+      "items",
+      "collection",
+      "glamour",
+      "sets"
+    ],
+    "DownloadLinkInstall": "https://github.com/Akurosia/AkuItemSets/releases/download/v0.0.5/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/AkuItemSets/releases/download/v0.0.5/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/AkuItemSets/releases/download/v0.0.5/latest.zip"
+  },
+  {
+    "Author": "UnknownX, iRobsie, BeSlightly",
+    "Name": "DalamudRepoBrowser",
+    "Punchline": "Browse and add third party repositories in an instant",
+    "Description": "An interface for browsing and managing third party repositories.",
+    "Changelog": "",
+    "InternalName": "DalamudRepoBrowser",
+    "AssemblyVersion": "3.0.0.4",
+    "RepoUrl": "https://github.com/BeSlightly/DalamudRepoBrowser",
+    "ApplicableVersion": "any",
+    "CategoryTags": [
+      "other"
+    ],
+    "DalamudApiLevel": 15,
+    "IconUrl": "https://raw.githubusercontent.com/BeSlightly/DalamudRepoBrowser/master/images/logo.png",
+    "ImageUrls": [
+      ""
+    ],
+    "DownloadLinkInstall": "https://github.com/BeSlightly/DalamudRepoBrowser/releases/download/v3.0.0.4/latest.zip",
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "DownloadLinkTesting": "https://github.com/BeSlightly/DalamudRepoBrowser/releases/download/v3.0.0.3/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/BeSlightly/DalamudRepoBrowser/releases/download/v3.0.0.4/latest.zip",
+    "DownloadCount": 246,
+    "LastUpdate": 1777494730
+  },
+  {
+    "Author": "Akurosia",
+    "Name": "HP Difference Gauge",
+    "InternalName": "HPDiff",
+    "AssemblyVersion": "0.9.1.4",
+    "Punchline": "Enemy HP Split Gauge",
+    "Description": "Provides a visual representation of the HP difference between two enemies on your aggro list.  Open the plugin config window to see a preview of the gauge and to change options.",
+    "ApplicableVersion": "any",
+    "RepoUrl": "https://github.com/Akurosia/HPDiff",
+    "IconUrl": "https://raw.githubusercontent.com/Akurosia/HPDiff/main/icon.png",
+    "ImageUrls": [
+      "https://raw.githubusercontent.com/Akurosia/HPDiff/main/docs/Images/image1.png"
+    ],
+    "Tags": [
+      "UI"
+    ],
+    "DalamudApiLevel": 15,
+    "AcceptsFeedback": true,
+    "DownloadLinkInstall": "https://github.com/Akurosia/HPDiff/releases/download/v0.0.2/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/HPDiff/releases/download/v0.0.2/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/HPDiff/releases/download/v0.0.2/latest.zip"
+  }
+]
