@@ -25,15 +25,7 @@
       "owner": "Akurosia",
       "repo": "HPDiff",
       "branch": "main",
-      "path": "HPDiff/HPDiff.json",
-      "preferSourceRepoUrl": true,
-      "overrides": {
-        "Author": "Akurosia",
-        "IconUrl": "https://raw.githubusercontent.com/Akurosia/HPDiff/main/icon.png",
-        "ImageUrls": [
-          "https://raw.githubusercontent.com/Akurosia/HPDiff/main/docs/Images/image1.png"
-        ]
-      }
+      "path": "repo.json"
     }
   ]
 }
