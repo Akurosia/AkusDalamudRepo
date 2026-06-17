@@ -32,6 +32,12 @@
       "repo": "Dalamud.LoadingImage",
       "branch": "master",
       "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "AkuXIVCollect",
+      "branch": "main",
+      "path": "repo.json"
     }
   ]
 }
