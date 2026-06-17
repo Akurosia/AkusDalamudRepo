@@ -115,5 +115,26 @@
       "zones",
       "cosmetic"
     ]
+  },
+  {
+    "Author": "Aku",
+    "Name": "Aku XIV Collect",
+    "InternalName": "AkuXIVCollect",
+    "Description": "Adds /akuxivcollect to scan supported in-game collection unlocks and copy or save JSON for https://ffxivcollect.com/import.",
+    "AssemblyVersion": "0.1.29.0",
+    "TestingAssemblyVersion": "0.1.29.0",
+    "RepoUrl": "https://github.com/Akurosia/AkuXIVCollect",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "TestingDalamudApiLevel": 15,
+    "Punchline": "Export in-game collection progress for FFXIV Collect import.",
+    "Tags": [
+      "collection",
+      "ffxivcollect",
+      "export"
+    ],
+    "DownloadLinkInstall": "https://github.com/Akurosia/AkuXIVCollect/releases/download/latest/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Akurosia/AkuXIVCollect/releases/download/latest/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Akurosia/AkuXIVCollect/releases/download/latest/latest.zip"
   }
 ]

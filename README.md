@@ -6,7 +6,7 @@ Dalamud custom repositories are JSON files containing an array of plugin/store e
 
 ## Setup
 
-1. Edit `repos.json`.
+1. Edit `input_repos.json`.
 2. Add your source repositories under `repositories`.
 3. Push this repo to GitHub.
 4. In GitHub, open **Actions** -> **Merge Dalamud repos** -> **Run workflow**.
@@ -49,9 +49,9 @@ the repository's latest GitHub release asset named `latest.zip` by default. Use 
 
 ## Duplicate Handling
 
-The first source wins by default. Put higher-priority repositories earlier in `repos.json`.
+The first source wins by default. Put higher-priority repositories earlier in `input_repos.json`.
 
-Change `duplicatePolicy` in `repos.json` if you want different behavior:
+Change `duplicatePolicy` in `input_repos.json` if you want different behavior:
 
 - `keep-first`: keep the first plugin entry seen
 - `keep-last`: replace earlier plugin entries with later ones
@@ -62,7 +62,7 @@ Plugins are matched by `InternalName`, then `Name`, then `AssemblyName`.
 ## Download Validation
 
 The merger validates `DownloadLinkInstall`, `DownloadLinkUpdate`, and `DownloadLinkTesting` before writing the
-merged repo. Set `invalidDownloadPolicy` in `repos.json` to choose how dead links are handled:
+merged repo. Set `invalidDownloadPolicy` in `input_repos.json` to choose how dead links are handled:
 
 - `error`: fail the merge when a plugin has a broken download link
 - `skip`: omit plugins with broken download links
@@ -71,5 +71,5 @@ merged repo. Set `invalidDownloadPolicy` in `repos.json` to choose how dead link
 ## Manual Local Run
 
 ```powershell
-node scripts/merge-repos.mjs --config repos.json --output repo.json
+node scripts/merge-repos.mjs --config input_repos.json --output repo.json
 ```
