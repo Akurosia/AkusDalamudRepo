@@ -38,6 +38,12 @@
       "repo": "AkuXIVCollect",
       "branch": "main",
       "path": "repo.json"
+    },
+    {
+      "owner": "Akurosia",
+      "repo": "AkuTrack",
+      "branch": "master",
+      "path": "repo.json"
     }
   ]
 }
